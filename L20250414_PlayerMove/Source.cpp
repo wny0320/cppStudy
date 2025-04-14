@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
+#include <time.h>
 
 using namespace std;
 
@@ -50,11 +51,16 @@ void Clipping(int _MaxMapY, int _MaxMapX, PlayerData &_PlayerData)
 int main()
 {
 	int Map[MaxMapY][MaxMapX];
+	srand(time(NULL));
 	for (int i = 0; i < MaxMapY; i++)
 	{
 		for (int j = 0; j < MaxMapX; j++)
 		{
 			if (i == 0 || i == 19 || j == 0 || j == 9)
+			{
+				Map[i][j] = 1;
+			}
+			else if (rand() % 10 == 0)
 			{
 				Map[i][j] = 1;
 			}
@@ -92,15 +98,31 @@ int main()
 			switch (InputKey)
 			{
 			case UP:
+				if (Map[MyPlayerData.Y - 1][MyPlayerData.X] == 1)
+				{
+					break;
+				}
 				MyPlayerData.Y -= 1;
 				break;
 			case DOWN:
+				if (Map[MyPlayerData.Y + 1][MyPlayerData.X] == 1)
+				{
+					break;
+				}
 				MyPlayerData.Y += 1;
 				break;
 			case RIGHT:
+				if (Map[MyPlayerData.Y][MyPlayerData.X + 1] == 1)
+				{
+					break;
+				}
 				MyPlayerData.X += 1;
 				break;
 			case LEFT:
+				if (Map[MyPlayerData.Y][MyPlayerData.X - 1] == 1)
+				{
+					break;
+				}
 				MyPlayerData.X -= 1;
 				break;
 			default:
