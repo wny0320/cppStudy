@@ -47,107 +47,116 @@ void Clipping(int _MaxMapY, int _MaxMapX, PlayerData &_PlayerData)
 		_PlayerData.Y = _MaxMapY - 2;
 	}
 }
-
-int main()
+void Init(int _Map[MaxMapY][MaxMapX])
 {
-	int Map[MaxMapY][MaxMapX];
-	srand(time(NULL));
 	for (int i = 0; i < MaxMapY; i++)
 	{
 		for (int j = 0; j < MaxMapX; j++)
 		{
 			if (i == 0 || i == 19 || j == 0 || j == 9)
 			{
-				Map[i][j] = 1;
+				_Map[i][j] = 1;
 			}
 			else if (rand() % 10 == 0)
 			{
-				Map[i][j] = 1;
+				_Map[i][j] = 1;
 			}
 			else
 			{
-				Map[i][j] = 0;
+				_Map[i][j] = 0;
+			}
+		}
+	}
+}
+
+char Input(char &_InputKey)
+{
+	char InputKey = _getch();
+	return InputKey;
+}
+
+void Tick(char &_InputKey, int _Map[MaxMapY][MaxMapX], PlayerData &_PlayerData)
+{
+	switch (_InputKey)
+	{
+	case UP:
+		if (_Map[_PlayerData.Y - 1][_PlayerData.X] == 1)
+		{
+			break;
+		}
+		_PlayerData.Y -= 1;
+		break;
+	case DOWN:
+		if (_Map[_PlayerData.Y + 1][_PlayerData.X] == 1)
+		{
+			break;
+		}
+		_PlayerData.Y += 1;
+		break;
+	case RIGHT:
+		if (_Map[_PlayerData.Y][_PlayerData.X + 1] == 1)
+		{
+			break;
+		}
+		_PlayerData.X += 1;
+		break;
+	case LEFT:
+		if (_Map[_PlayerData.Y][_PlayerData.X - 1] == 1)
+		{
+			break;
+		}
+		_PlayerData.X -= 1;
+		break;
+	default:
+		break;
+	}
+	Clipping(MaxMapY, MaxMapX, _PlayerData);
+}
+
+void Render(int _Map[MaxMapY][MaxMapX], PlayerData _PlayerData, char _MapDraw[MaxMapY][MaxMapX])
+{
+	system("cls");
+	for (int i = 0; i < MaxMapY; i++)
+	{
+		for (int j = 0; j < MaxMapX; j++)
+		{
+			if (_Map[i][j] == 1)
+			{
+				_MapDraw[i][j] = '*';
+			}
+			else if (_PlayerData.Y == i && _PlayerData.X == j)
+			{
+				_MapDraw[i][j] = 'P';
+			}
+			else
+			{
+				_MapDraw[i][j] = ' ';
 			}
 		}
 	}
 
-	bool IsRunning = true;
-	PlayerData MyPlayerData;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < MaxMapY; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < MaxMapX; j++)
 		{
-			if (Map[i][j] == 1)
-			{
-				cout << "*";
-			}
-			else
-			{
-				cout << " ";
-			}
+			cout << _MapDraw[i][j];
 		}
 		cout << endl;
 	}
-	SetCursor(MyPlayerData.X, MyPlayerData.Y);
-	cout << "P";
+}
+int main()
+{
+	int Map[MaxMapY][MaxMapX];
+	char MapDraw[MaxMapY][MaxMapX];
+	srand(time(NULL));
+	Init(Map);
+	bool IsRunning = true;
+	PlayerData MyPlayerData;
 	while (IsRunning)
 	{
-		if (_kbhit())
-		{
-			char InputKey = _getch();
-			switch (InputKey)
-			{
-			case UP:
-				if (Map[MyPlayerData.Y - 1][MyPlayerData.X] == 1)
-				{
-					break;
-				}
-				MyPlayerData.Y -= 1;
-				break;
-			case DOWN:
-				if (Map[MyPlayerData.Y + 1][MyPlayerData.X] == 1)
-				{
-					break;
-				}
-				MyPlayerData.Y += 1;
-				break;
-			case RIGHT:
-				if (Map[MyPlayerData.Y][MyPlayerData.X + 1] == 1)
-				{
-					break;
-				}
-				MyPlayerData.X += 1;
-				break;
-			case LEFT:
-				if (Map[MyPlayerData.Y][MyPlayerData.X - 1] == 1)
-				{
-					break;
-				}
-				MyPlayerData.X -= 1;
-				break;
-			default:
-				break;
-			}
-			Clipping(MaxMapY, MaxMapX, MyPlayerData);
-			system("cls");
-			for (int i = 0; i < 20; i++)
-			{
-				for (int j = 0; j < 10; j++)
-				{
-					if (Map[i][j] == 1)
-					{
-						cout << "*";
-					}
-					else
-					{
-						cout << " ";
-					}
-				}
-				cout << endl;
-			}
-			SetCursor(MyPlayerData.X, MyPlayerData.Y);
-			cout << "P";
-		}
-
+		char InputKey;
+		InputKey = Input(InputKey);
+		Tick(InputKey, Map, MyPlayerData);
+		Render(Map, MyPlayerData, MapDraw);
 	}
 }
