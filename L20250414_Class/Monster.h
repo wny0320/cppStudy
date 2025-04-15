@@ -1,6 +1,6 @@
 #pragma once
 #include "Actor.h"
-class AMonster : AActor
+class AMonster : public AActor
 {
 	void Move();
 };
