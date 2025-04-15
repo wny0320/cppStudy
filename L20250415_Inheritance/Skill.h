@@ -18,15 +18,15 @@ public:
 	{
 		return Damage;
 	}
-	void SetUseHpAmount(int _SetUseHpAmount)
+	void SetUseHpAmount(float _SetUseHpAmount)
 	{
 		UseHpAmount = _SetUseHpAmount;
 	}
-	void SetUseMpAmount(int _SetUseMpAmount)
+	void SetUseMpAmount(float _SetUseMpAmount)
 	{
 		UseMpAmount = _SetUseMpAmount;
 	}
-	void SetUseHpAmount(int _SetDamage)
+	void SetDamage(float _SetDamage)
 	{
 		Damage = _SetDamage;
 	}

@@ -5,19 +5,19 @@
 class ACharacter
 {
 protected:
-	int Hp;
-	int Mp;
-	int Damage;
+	float Hp;
+	float Mp;
+	float Damage;
 	UImage CharacterImage;
 	void Move()
 	{
 
 	}
-	void Attack(ACharacter* _TargetCharacter, int _Damage)
+	void Attack(ACharacter* _TargetCharacter, float _Damage)
 	{
 		_TargetCharacter->GetDamage(_Damage);
 	}
-	void GetDamage(int _Amount)
+	void GetDamage(float _Amount)
 	{
 		Hp -= _Amount;
 	}
