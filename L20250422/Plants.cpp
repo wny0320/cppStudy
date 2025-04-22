@@ -1,8 +1,9 @@
 #include "Plants.h"
 #include "Bullet.h"
 
-APlants::APlants(float _Atk, float _CoolDown, float _Price, float _AtkRange, float _AtkCount, float _BulletSpeed)
+APlants::APlants(float _Hp, float _Atk, float _CoolDown, float _Price, float _AtkRange, float _AtkCount, float _BulletSpeed)
 {
+	Hp = _Hp;
 	Atk = _Atk;
 	CoolDown = _CoolDown;
 	Price = _Price;
