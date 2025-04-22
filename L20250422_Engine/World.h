@@ -10,6 +10,11 @@ public:
 	void Tick();
 	void Render();
 
+	void SpawnActor(AActor* NewActor);
+	void DestroyActor(AActor* DestroyedActor);
+
+	std::vector<AActor*>& GetAllActors();
+
 protected:
 	std::vector<AActor*> Actors;
 };

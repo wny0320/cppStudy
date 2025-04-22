@@ -4,6 +4,8 @@ class UInput
 public:
 	UInput();
 	virtual ~UInput();
-	void Tick();
-};
 
+	void Tick();
+
+	static int KeyCode;
+};

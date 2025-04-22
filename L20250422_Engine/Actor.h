@@ -13,5 +13,8 @@ public:
 
 	virtual void Tick();
 	virtual void Render();
+
+	//모양 없는 Actor가 있을 수도 있는데 이런 경우 때문에 Component 기반 프로그래밍이 나옴
+	char Shape;
 };
 
