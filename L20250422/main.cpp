@@ -8,31 +8,23 @@
 
 int main()
 {
-	std::vector<AZombie*> ZombieVector;
-	std::vector<APlants*> PlantsVector;
+	std::vector<ACharacter*> CharacterVector;
 	APlants* Plant1 = new APlants(100, 20, 1, 5, 50, 1, 10);
 	ACommonZombie* Zombie1 = new ACommonZombie(100, 10, 1, 1, 10, 0);
 	AGunZombie* Zombie2 = new AGunZombie(200, 20, 3, 1, 30, 0);
+	CharacterVector.push_back(Plant1);
+	CharacterVector.push_back(Zombie1);
+	CharacterVector.push_back(Zombie2);
 
 	//Plant and Zombie Fight
-	for (auto Plant : PlantsVector)
+	for (auto Character : CharacterVector)
 	{
-		Plant->Attack();
-	}
-	for (auto Zombie : ZombieVector)
-	{
-		Zombie->Move();
-		Zombie->Attack();
+		Character->Attack();
 	}
 	//delete
-	for (auto Plant : PlantsVector)
+	for (auto Character : CharacterVector)
 	{
-		delete Plant;
+		delete Character;
 	}
-	for (auto Zombie : ZombieVector)
-	{
-		delete Zombie;
-	}
-	PlantsVector.clear();
-	ZombieVector.clear();
+	CharacterVector.clear();
 }

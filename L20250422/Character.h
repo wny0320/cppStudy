@@ -3,6 +3,7 @@ class ACharacter
 {
 public:
 	virtual void Attack();
+	virtual void Move();
 	virtual void Damaged(float _Damage, ACharacter* _Attacker);
 protected:
 	float Hp;

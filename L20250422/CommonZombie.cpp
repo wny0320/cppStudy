@@ -1,6 +1,6 @@
+#include <iostream>
 #include "CommonZombie.h"
-
 void ACommonZombie::Attack()
 {
-	//Just Attack;
+	std::cout << "Common Zombie Attack" << std::endl;
 }

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Plants.h"
 #include "Bullet.h"
 
@@ -23,6 +24,12 @@ APlants::~APlants()
 
 void APlants::Attack()
 {
-	ABullet* Bullet = new ABullet(Atk, BulletSpeed);
+	ABullet* Bullet = new ABullet(this, Atk, BulletSpeed);
 	MyBulletVector.push_back(Bullet);
+	std::cout << "Plants Attack" << std::endl;
+}
+
+void APlants::Move()
+{
+	std::cout << "Plants Can't Move" << std::endl;
 }
